@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="section-tours">
+            <div class="row">
+                <div class="col">
+                    <img src="{{ vich_uploader_asset(article, 'image_file') }}" width="100%">
+                </div>
+                <div class="col">
+                    <div class="card__details" align="center">
+                        <h1 class="my-orange-text">{{ article.title }}</h1>
+                        <hr width="80%" class="mt-5 mb-5">
+                        <h2 class="my-white-text mb-5">Métre cube : {{ categorie }}</h2>
+                        <h2 class="my-white-text mb-5">Description : {{ article.description }}</h2>
+                        <h3 class="my-white-text mb-5">Mise en ligne le : {{ article.createdAt ? article.createdAt|date('d/m/Y à H:i') : '' }}</h3>
+                    </div>
+                    <div align="right">
+                        <a href="{{ path('home') }}" class="btn btn-primary">Retour en arriere</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

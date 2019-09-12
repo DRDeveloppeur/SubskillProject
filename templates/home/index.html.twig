@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="section-tours">
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            
+            <div class="pt-3" align="center">
+                {{ form_start(form, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.categorie, {'attr': {'class': 'form-control col-2'}}) }}
+                        <button class="btn btn-primary ml-4 mt-1" type="submit">Recherche</button>
+                {{ form_end(form) }}
+            </div>
+
+            <hr width="80%">
+
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-1-of-3 mb-4 justify-content-center p-4">
+                        <div class="card justify-content-center ml-5">
+                            <div class="card__side card__side--front">
+                                <div class="card__picture" style="background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url({{ vich_uploader_asset(article, 'image_file') }})">
+                                </div>
+                                <h4 class="card__heading">
+                                    <span class="card__heading-span card__heading-span--1 my-orange-text">{{ article.title }}</span>
+
+                                </h4>
+                                <div class="card__details">
+                                    <blockquote class="blockquote text-center">
+                                        <footer class="blockquote-footer">
+                                            <cite title="Source Title" style="font-size: small" class="my-white-text">
+                                                {{ article.createdAt ? article.createdAt|date('d/m/Y à H:i') : '' }}
+                                            </cite>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="card__side card__side--back" style="background-image:linear-gradient(to right bottom, #ffb900, #ff7730)">
+                                <div class="card__cta">
+                                    <div class="card__price-box">
+                                        <h1 class="card__price-only my-orange-text">{{ article.description }}</h1>
+                                    </div>
+                                    <a href="{{ path('article', {'id': article.id}) }}" class="my-btn btn--white">Voir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

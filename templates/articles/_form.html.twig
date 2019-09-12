@@ -1,0 +1,10 @@
+{{ form_start(form, {'attr': {'class': 'form-control'}}) }}
+    <div class="col-md-6 offset-3">
+        {{ form_row(form.title, {'attr': {'placeholder': "Tittre", 'class': 'form-control'}}) }}
+        {{ form_row(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.description, {'attr': {'placeholder': "Description", 'class': 'form-control'}}) }}
+        {{ form_row(form.categorie, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    </div>
+{{ form_end(form) }}
